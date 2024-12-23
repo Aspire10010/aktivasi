@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POIN PUSAT SCATTER</title>
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/originals/96/74/a3/9674a3ff21e02af82daa565e5773fa56.gif');
+            color: lime; /* Warna teks hijau seperti CMD */
+            font-family: 'Courier New', Courier, monospace; /* Font monospace */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden; /* Mencegah scroll */
+            margin: 0; /* Menghilangkan margin default */
+        }
+        #output {
+            white-space: pre-wrap; /* Mempertahankan format teks dan memungkinkan pemutaran */
+            font-size: 18px; /* Ukuran teks */
+            text-align: left; /* Rata kiri */
+            width: 90%; /* Lebar responsif */
+            max-width: 600px; /* Lebar maksimum */
+            border: 1px solid lime; /* Border hijau */
+            padding: 10px; /* Ruang di dalam border */
+            background-color: black; /* Latar belakang output */
+            box-shadow: 0 0 10px lime; /* Efek bayangan */
+            overflow-y: auto; /* Menambahkan scroll jika konten melebihi */
+        }
+    </style>
+</head>
+<body>
+    <div id="output">
+        <span id="text-output"></span>
+    </div>
+
+    <script>
+        const outputElement = document.getElementById('text-output');
+        const messages = [
+            "Pemasangan POIN PUSAT SCATTER dimulai...\n",
+            "Mengecheck USERNAME...\n",
+            "Mentransfer ID ke PG SOFT...\n",
+            "Memverifikasi integritas PG SOFT...\n",
+            "Menginstal komponen Mahjong...\n",
+            "Menyimpan database...\n",
+            "Mengkonfigurasi jaringan...\n",
+            "Mengkonfigurasi daya baterai...\n",
+            "Menyelesaikan instalasi...\n",
+            "Pemasangan selesai. Terima kasih telah memilih POIN PUSAT SCATTER.\n",
+            "Semoga Beruntung Hari ini..."
+        ];
+
+        async function displayMessages() {
+            const totalDuration = 7000; // Durasi total 5 detik
+            const messageCount = messages.length;
+            const messageDuration = totalDuration / messageCount; // Durasi per pesan
+
+            for (const message of messages) {
+                await new Promise(resolve => {
+                    let charIndex = 0;
+                    const typingInterval = setInterval(() => {
+                        if (charIndex < message.length) {
+                            outputElement.textContent += message.charAt(charIndex);
+                            charIndex++;
+                        } else {
+                            clearInterval(typingInterval);
+                            resolve();
+                        }
+                    }, messageDuration / message.length); // Durasi per karakter
+                });
+                outputElement.textContent += '\n'; // Tambahkan newline setelah pesan
+            }
+
+            // Redirect setelah 5 detik
+            setTimeout(() => {
+                window.location.href = "https://lumbungscatter.my.id/?ref=lbg01"; // Ganti dengan URL tujuan
+            }, 1000); // Tunggu 1 detik sebelum redirect
+        }
+
+        // Mulai menampilkan pesan
+        displayMessages();
+    </script>
+</body>
+</html>
